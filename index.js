@@ -16,13 +16,25 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
   try {
     const userCollection = client.db('nodeMongoCrud').collection('users');
-    
+
+
+
+    //Read/Get
+    app.get('/users', async (req, res) => {
+      const query = {};
+      const cursor = userCollection.find(query);
+      const users = await cursor.toArray();
+      res.send(users);
+    });
+
+
+    //creat
     app.post('/users', async (req, res) => {
       const user = req.body;
       console.log(user);
       const result = await userCollection.insertOne(user)
       res.send(result);
-  });
+    });
 
   }
   finally {
