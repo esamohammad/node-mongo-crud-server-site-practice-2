@@ -45,6 +45,41 @@ async function run() {
     });
 
 
+
+//put or patch korbo-(update)-- duitar bisheshotto ache ....so put diye kortechi..delete ar age dilam ok---
+
+app.put('/users/:id', async (req, res) => {
+  const id = req.params.id;
+  const filter = { _id: ObjectId(id) };
+  const updatedUser = req.body;
+  console.log(updatedUser)
+ 
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //delete 
     app.delete('/users/:id', async (req, res) => {
       const id = req.params.id;
