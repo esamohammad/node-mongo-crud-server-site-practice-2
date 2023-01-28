@@ -46,36 +46,24 @@ async function run() {
 
 
 
-//put or patch korbo-(update)-- duitar bisheshotto ache ....so put diye kortechi..delete ar age dilam ok---
+    //put or patch korbo-(update)-- duitar bisheshotto ache ....so put diye kortechi..delete ar age dilam ok---
 
-app.put('/users/:id', async (req, res) => {
-  const id = req.params.id;
-  const filter = { _id: ObjectId(id) };
-  const updatedUser = req.body;
-  console.log(updatedUser)
- 
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    app.put('/users/:id', async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: ObjectId(id) };
+      const user = req.body;
+      const option = { upsert: true };
+      const updatedUser = {
+        $set: {
+          name: user.name,
+          address: user.address,
+          email: user.email
+        }
+      }
+      const result = await userCollection.updateOne(filter, updatedUser, option);
+      res.send(result);
+      console.log(user)
+    })
 
 
 
